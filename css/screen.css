@@ -67,6 +67,15 @@
     /*  = 48px */
     --global-whitespace-xxl: calc(var(--global-whitespace) * 3);
     /*  = 72px */
+
+
+    /*background color*/
+    --global-input-backgroundColor: White;
+    --global-input-color: var(--global-color-neutral-xxxx-dark);
+    --global-input-borderColor: var(--global-color-neutral-xxx-light);
+    --global-input-hover-borderColor: var(--global-color-neutral-xx-light);
+    --global-input-focus-borderColor: var(--global-color-alpha);
+    --global-input-boxShadow: 0 0 0 3px var(--global-color-alpha-x-transparent);
 }
 
 /*------------------------------------*\
@@ -601,16 +610,16 @@ input::placeholder {
     -moz-appearance: none;
     appearance: none;
     width: 100%;
-    border: var(--global-borderWidth) solid var(--global-color-neutral-xxx-light);
     border-radius: var(--global-borderRadius);
-    color: var(--global-color-neutral-xxxx-dark);
-    background-color: White;
     font-family: inherit;
     font-size: 16px;
     line-height: calc(var(--global-baseline) * 3);
     padding: calc(var(--global-baseline) * 1.5 - var(--global-borderWidth)) var(--global-whitespace-md);
     outline: none;
     transition: border var(--global-transition-timing-alpha);
+    border: var(--global-borderWidth) solid var(--global-input-borderColor);
+    background-color: var(--global-input-backgroundColor);
+    color: var(--global-input-color);
 }
 
 .c-input:hover {
@@ -628,6 +637,116 @@ input::placeholder {
 .c-option {
     margin-right: var(--global-whitespace-sm);
 }
+
+.c-option-list {
+    margin-bottom: 24px;
+}
+
+.c-option-list__item {
+    margin-bottom: 12px;
+}
+
+.c-option--hidden:focus+.c-custom-option .c-custom-option__fake-input{
+    box-shadow: var(--global-input-boxShadow);
+}
+
+.c-option--hidden:checked+.c-custom-option .c-custom-option__symbol {
+    opacity: 100%;
+    transition: 0.5s;
+}
+
+.c-custom-option{
+    display: flex;
+    --custom-option-borderColor: var(--global-input-borderColor);
+    --custom-option-focus-borderColor: var(--global-input-focus-borderColor);
+}
+
+.c-custom-option__fake-input--checkbox .c-custom-option__symbol{
+    
+    display: block;
+    height: 10px;
+    width: 10px;
+    fill: var(--global-color-alpha);
+}
+
+.c-custom-option__fake-input--radio .c-custom-option__symbol{
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    background-color: var(--global-color-alpha);
+
+}
+
+
+
+.c-custom-option__symbol{
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.c-custom-option__fake-input {
+    display: flex;
+    width: 16px;
+    height: 16px;
+    border: var(--global-borderWidth) solid var(--global-input-borderColor);
+    margin-right: 8px;
+    border-radius: var(--global-borderRadius);
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--custom-option-borderColor);
+}
+
+.c-custom-option__fake-input--radio {
+    border-radius: 100%;
+}
+
+.c-custom-option:hover {
+    --custom-option-borderColor: var(--custom-option-hover-borderColor);
+}
+
+.c-custom-toggle__fake-input::after{
+    content: "";
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 100%;
+    background-color: var(--global-input-backgroundColor);
+    box-shadow:0 0 0 1px rgba(0,0,0,0.16);
+    border: none;
+    transition: 0.25s;
+}
+
+.c-option--hidden:focus + .c-custom-toggle .c-custom-toggle¨¨fake-input{
+    box-shadow: var(--global-input-boxShadow);
+}
+
+.c-option--hidden:checked + .c-custom-toggle .c-custom-toggle__fake-input{
+    background-color: var(--global-color-alpha);
+}
+
+.c-option--hidden:checked + .c-custom-toggle .c-custom-toggle__fake-input::after{
+    transform: translate(24px);
+}
+
+
+
+.c-custom-toggle__fake-input {
+    display: block;
+    width: 48px;
+    height: 24px;
+    border: var(--global-borderWidth) solid var(--global-input-borderColor);
+    margin-right: 8px;
+    border-radius: 24px;
+    background-color: var(--global-color-neutral-xxxx-light);
+}
+
+.c-toggle__label--inverted {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    justify-content: space-between;
+}
+
 
 /*
     Component: Label
